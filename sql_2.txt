@@ -1,0 +1,25 @@
+transaction_product_type AS (
+  SELECT
+    trans.client_id AS client_id,
+    prod.product_type AS product_type,
+    SUM(trans.prod_price*trans.prod_qty) AS total_ventes
+  FROM
+    TRANSACTION trans
+  INNER JOIN
+    PRODUCT_NOMENCLATURE prod
+  ON
+    trans.prop_id = prod.product_id
+  WHERE
+    PARSE_DATE("%d/%m/%y",trans.tr_date ) BETWEEN "2019-01-01"
+    AND "2019-12-31"
+  GROUP BY
+    trans.client_id,
+    prod.product_type )
+SELECT
+  *
+FROM
+  transaction_product_type
+PIVOT(
+  sum(total_ventes) AS ventes
+  FOR product_type IN ("MEUBLE", "DECO")
+);

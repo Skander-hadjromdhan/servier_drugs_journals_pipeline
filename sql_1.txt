@@ -1,0 +1,12 @@
+SELECT
+  FORMAT_DATE("%d/%m/%Y",PARSE_DATE("%d/%m/%y",date )) AS date,
+  SUM(prod_price * prod_qty ) AS ventes
+FROM
+  transactions
+WHERE
+  PARSE_DATE("%d/%m/%y",date ) BETWEEN "2019-01-01"
+  AND "2019-12-31"
+GROUP BY
+  transaction_date
+ORDER BY
+  PARSE_DATE("%d/%m/%y",date ) ASC;

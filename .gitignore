@@ -1,0 +1,5 @@
+**/__pycache__/
+
+servier_test_venv/
+.idea/
+.servier_drugs_journals_pipeline/output_graph.json
