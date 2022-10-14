@@ -10,7 +10,7 @@ transaction_product_type AS (
   ON
     trans.prop_id = prod.product_id
   WHERE
-    PARSE_DATE("%d/%m/%y",trans.tr_date ) BETWEEN "2019-01-01"
+    PARSE_DATE("%d/%m/%y",trans.date ) BETWEEN "2019-01-01"
     AND "2019-12-31"
   GROUP BY
     trans.client_id,
